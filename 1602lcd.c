@@ -3,7 +3,7 @@
 //===============LCD=======================
 void delay10ms(){
 	int temp;
-	for(temp = 0 ; temp < 500; temp++)
+	for(temp = 0 ; temp < 250; temp++)
 	  _nop_();
 }
 
@@ -48,6 +48,7 @@ void lcdShowFloat(float dat, uchar pos){
 	ch[2] = result % 10 + '0'; result /= 10;
 	ch[1] = result % 10 + '0'; result /= 10;
 
+	lcdWriteCmd(pos);
 	for(result = 0; result < 7; result++){
 		lcdWriteData(ch[result]);
 	}

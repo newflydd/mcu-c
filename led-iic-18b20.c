@@ -83,26 +83,13 @@ void main(void){
 	lcdWriteData('V');
 	lcdWriteData('E');
 	lcdWriteData('U');
+	lcdWriteCmd(0x8d);	//指针起始位置为第一排左边
+	lcdWriteData(0xdf);
+	lcdWriteData('C');
 	while(1){
-		lcdWriteCmd(0x01);	//clear
-
 		temperatureInt = ds18b20GetTemperature();
-		if( temperatureInt == -55){
-			temperatureInt = 100;
-			lcdWriteData('U');
-		}else if( temperatureInt == -54){
-			temperatureInt = 200;
-			lcdWriteData('S');
-		}else{
-			lcdWriteData('I');
-		}
-		lcdWriteData('L');
-		lcdWriteData('O');
-		lcdWriteData('V');
-		lcdWriteData('E');
-		lcdWriteData('U');
 		temperature = ds18b20GetTemperatureFromInt(temperatureInt);
-		lcdShowFloat(temperature, 0x00);
+		lcdShowFloat(temperature, 0x86);
 		lcdWriteData(0xdf);
 		lcdWriteData('C');
 		for(kk = 0; kk < 50; kk++)
