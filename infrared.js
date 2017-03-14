@@ -17,3 +17,9 @@ port.on('data', data => {
 
     console.log(dataBuffer.toString('hex'));
 });
+
+function sendData(buffer) {
+    port.write(buffer);
+}
+
+sendData(new Buffer([0xFF,0xFA]));
